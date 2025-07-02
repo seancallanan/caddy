@@ -1,0 +1,61 @@
+# The Caddyfile is an easy way to configure your Caddy web server.
+#
+# Unless the file starts with a global options block, the first
+# uncommented line is always the address of your site.
+#
+# To use your own domain name (with automatic HTTPS), first make
+# sure your domain's A/AAAA DNS records are properly pointed to
+# this machine's public IP, then replace ":80" below with your
+# domain name.
+
+:80 {
+	respond * "Test"
+	# Set this path to your site's directory.
+	# root * /usr/share/caddy
+
+	# Enable the static file server.
+	# file_server
+
+	# Another common task is to set up a reverse proxy:
+	# reverse_proxy localhost:8080
+
+	# Or serve a PHP site through php-fpm:
+	# php_fastcgi localhost:9000
+}
+
+https://pihole.alma:443 {
+	redir / /admin/{uri} permanent
+	tls internal
+	reverse_proxy localhost:1010
+}
+
+http://ha.alma {
+	reverse_proxy localhost:8123
+}
+
+https://cloud.alma:443 {
+	tls internal
+	reverse_proxy localhost:11000
+}
+
+http://router.alma {
+	reverse_proxy 192.168.18.1
+}
+
+https://console.alma:443 {
+	tls internal
+	redir https://media:9090
+}
+
+https://jellyfin.alma:443 {
+	tls internal
+	reverse_proxy localhost:8096
+}
+
+https://dashy.alma {
+	tls internal
+	reverse_proxy localhost:17054
+}
+
+# Refer to the Caddy docs for more information:
+# https://caddyserver.com/docs/caddyfile
