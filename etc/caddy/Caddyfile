@@ -52,7 +52,7 @@ https://jellyfin.alma:443 {
 	reverse_proxy localhost:8096
 }
 
-https://dashy.alma {
+http://dashy.alma {
 	tls internal
 	reverse_proxy localhost:17054
 }
