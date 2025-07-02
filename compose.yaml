@@ -3,6 +3,9 @@ services:
     image: caddy:alpine
     restart: unless-stopped
     container_name: caddy
+    ports:
+      - 80:80/tcp
+      - 443:443/tcp
     volumes:
       - /home/scallanan/work/caddy/etc/caddy:/etc/caddy
       - /home/scallanan/work/caddy/site:/srv
