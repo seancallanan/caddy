@@ -14,7 +14,7 @@ https://pihole.alma:443 {
 	reverse_proxy localhost:1010
 }
 
-http://ha.alma {
+https://ha.alma {
 	reverse_proxy localhost:8123
 }
 
@@ -37,7 +37,7 @@ https://jellyfin.alma:443 {
 	reverse_proxy localhost:8096
 }
 
-http://dashy.alma {
+https://dashy.alma {
 	tls internal
 	reverse_proxy localhost:17054
 }
