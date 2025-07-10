@@ -7,8 +7,8 @@ services:
       - 80:80/tcp
       - 443:443/tcp
     volumes:
-      - ${PWD}/etc/caddy:/etc/caddy
-      - ${PWD}/site:/srv
+      - /home/scallanan/work/caddy/etc/caddy:/etc/caddy
+      - /home/scallanan/work/caddy/site:/srv
       - caddy_data:/data
       - caddy_config:/config
     network_mode: "host"
