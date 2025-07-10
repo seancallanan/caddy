@@ -8,38 +8,46 @@
 # this machine's public IP, then replace ":80" below with your
 # domain name.
 
-https://pihole.alma:443 {
-	redir / /admin/{uri} permanent
-	tls internal
-	reverse_proxy localhost:1010
-}
-
-https://ha.alma {
-	reverse_proxy localhost:8123
-}
-
-https://cloud.alma:443 {
-	tls internal
-	reverse_proxy localhost:11000
-}
-
 http://router.alma {
 	reverse_proxy 192.168.18.1
 }
 
-https://console.alma:443 {
-	tls internal
-	redir https://media:9090
+http://ha.alma {
+	reverse_proxy 127.0.0.1:8123
 }
 
-https://jellyfin.alma:443 {
+http://jellyfin.alma {
+	reverse_proxy 192.168.1.2:8096
+}
+
+http://adblocker.alma {
+	reverse_proxy :1010
+}
+
+https://pihole.alma:443 {
+	redir / /admin/{uri} permanent
 	tls internal
-	reverse_proxy localhost:8096
+	reverse_proxy :1010
+}
+
+https://cloud.alma:443 {
+	tls internal
+	reverse_proxy :11000
+}
+
+https://console.alma:443 {
+	tls internal
+	reverse_proxy :9090
 }
 
 https://dashy.alma {
 	tls internal
-	reverse_proxy localhost:17054
+	reverse_proxy :17054
+}
+
+https://komodo.alma {
+	tls internal
+	reverse_proxy :9120
 }
 
 # Refer to the Caddy docs for more information:
